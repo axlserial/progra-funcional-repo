@@ -1,5 +1,8 @@
 import csv
 from pprint import pprint
+from statistics import mean
+
+
 
 
 # Lista con los nombres de los juegos
@@ -37,12 +40,39 @@ def third_comp(name_file: str):
         return list_games
 
 
+# Lista de tuplas que esten compuestas por las columnas Name 
+def fourth_comp(name_file: str):
+    sales = ['NA_Sales','EU_Sales','JP_Sales','Other_Sales','Global_Sales']
+
+    with open(name_file) as csvfile:
+        games = csv.reader(csvfile, delimiter=',')
+        h = list(next(games))
+
+        list_games = [(game[h.index("Name")], 
+                       mean([float(game[h.index(k)]) for k in sales])) for game in games]
+
+        return list_games
+
+# Lista de listas con todos lo registros del archivo donde los juegos sean del año 2006 y su rango sea menor a 2000
+
+def fifth_comp(name_file: str):
+    with open(name_file) as csvfile:
+
+        games = csv.reader(csvfile, delimiter=',')
+        h = next(games)
+        list_games = [game for game in games if game[h.index("Year")] == "2016" and float(game[h.index("Rank")]) < 2000]
+
+        return list_games 
+
 def run():
     f = './vgsales.csv'
 
     # pprint(first_comp(f)[:10])
     # pprint(second_comp(f)[:10])
-    pprint(third_comp(f)[:10])
+    # pprint(third_comp(f)[:10])
+    #pprint(fourth_comp(f)[:10])
+    #print(fourth_comp(f))
+    
 
 
 if __name__ == "__main__":

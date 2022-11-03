@@ -40,7 +40,7 @@ def third_comp(name_file: str):
         return list_games
 
 
-# Lista de tuplas que esten compuestas por las columnas Name 
+# Lista de tuplas que esten compuestas por las columnas Name y Avg_Sales es cual se obtiene del promedio de las columnas NA_Sales, EU_Sales, JP_Sales, Other_Sales y Global_Sales
 def fourth_comp(name_file: str):
     sales = ['NA_Sales','EU_Sales','JP_Sales','Other_Sales','Global_Sales']
 

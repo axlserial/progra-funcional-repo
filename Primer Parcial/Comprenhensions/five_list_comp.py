@@ -70,8 +70,8 @@ def run():
     # pprint(first_comp(f)[:10])
     # pprint(second_comp(f)[:10])
     # pprint(third_comp(f)[:10])
-    #pprint(fourth_comp(f)[:10])
-    #print(fourth_comp(f))
+    # pprint(fourth_comp(f)[:10])
+    # pprint(fifth_comp(f)[:10])
     
 
 

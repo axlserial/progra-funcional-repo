@@ -1,5 +1,4 @@
 import csv
-from pprint import pprint
 from statistics import mean
 
 
@@ -39,7 +38,7 @@ def third_list_comp(name_file: str):
 
 
 # Lista de tuplas que esten compuestas por
-# las columnas Name y Avg_Sales es cual se obtiene
+# las columnas Name y Avg_Sales la cual se obtiene
 # del promedio de las columnas NA_Sales, EU_Sales, JP_Sales, Other_Sales y Global_Sales
 def fourth_list_comp(name_file: str):
     sales = ['NA_Sales', 'EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
@@ -73,11 +72,25 @@ def fifth_list_comp(name_file: str):
 def run():
     f = './vgsales.csv'
 
-    # pprint(first_comp(f)[:10])
-    # pprint(second_comp(f)[:10])
-    # pprint(third_comp(f)[:10])
-    # pprint(fourth_comp(f)[:10])
-    # pprint(fifth_comp(f)[:10])
+    print("1. Lista con los nombres de los juegos.\n", first_list_comp(f)[:10])
+
+    print("\n2. Lista de tuplas con el nombre y el año de los juegos.\n",
+          second_list_comp(f)[:10])
+
+    print(
+        "\n3. Lista de tuplas con el nombre, el año y la plataforma de los juegos.\n",
+        third_list_comp(f)[:10])
+
+    print((
+        "\n4. Lista de tuplas que esten compuestas por las columnas Name y Avg_Sales\n"
+        "la cual se obtiene del promedio de las columnas: "
+        " NA_Sales, EU_Sales, JP_Sales, Other_Sales y Global_Sales.\n"),
+          fourth_list_comp(f)[:10])
+
+    print((
+        "\n5. Lista de listas con todos lo registros del archivo donde los juegos\n"
+        "sean del año 2006 y su rango sea menor a 2000.\n"),
+          fifth_list_comp(f)[:10])
 
 
 if __name__ == "__main__":

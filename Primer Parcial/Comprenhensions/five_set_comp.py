@@ -14,7 +14,7 @@ def first_set_comp(name_file: str):
 
 
 # Conjunto de todos los registros que sus elementos
-# sean la tupla "Name" y "Global_Sales" de los juegos
+# sean la tupla 'Name' y 'Global_Sales' de los juegos
 def second_set_comp(name_file: str):
     with open(name_file) as csvfile:
         games = csv.reader(csvfile, delimiter=",")
@@ -27,7 +27,7 @@ def second_set_comp(name_file: str):
 
 
 # Conjunto de todos los registros que sus elementos
-# sean la tupla "Name" y "NA_Sales" de los juegos
+# sean la tupla 'Name' y 'NA_Sales' de los juegos
 # que hayan vendido más de 5.0 millones en NA
 def third_set_comp(name_file: str):
     with open(name_file) as csvfile:
@@ -41,11 +41,9 @@ def third_set_comp(name_file: str):
         return set_games
 
 
-# Conjunto de tuplas con las columnas: Name y Global_Sales
-# de juegos que su plublisher sea Sega, su plataforma 3DS
+# Conjunto de tuplas con las columnas: 'Name' y 'Global_Sales'
+# de juegos que su 'Publisher' sea Sega, su 'Platform' 3DS
 # y que sean de Sonic.
-
-
 def fourth_set_comp(name_file: str):
     with open(name_file) as csvfile:
         games = csv.reader(csvfile, delimiter=",")
@@ -59,8 +57,8 @@ def fourth_set_comp(name_file: str):
         return set_games
 
 
-# Conjunto de los nombres de los Publisher's que poseen juegos
-# del genero de Platform cuyo lanzamiento esta entre los años 2013 y 2016.
+# Conjunto de los nombres de los 'Publisher' que poseen juegos
+# del genero 'Platform' cuyo lanzamiento está entre los años 2013 y 2016.
 def five_set_comp(name_file: str):
     with open(name_file) as csvfile:
         games = csv.reader(csvfile, delimiter=",")
@@ -122,40 +120,80 @@ def conjunto_u(name_file: str):
 def run():
     f = './vgsales.csv'
 
-    # pprint(first_comp(f))
-    # pprint(second_comp(f))
-    # pprint(third_comp(f))
-    # pprint(five_comp(f))
+    print("NOTA: Impresión limitada a los primeros 5 elementos del conjunto\n")
+
+    print("--------------- Set comprenhensions:\n")
+
+    print("1. Conjunto de los nombres de las plataformas")
+    pprint(set(list(first_set_comp(f))[:5]))
+
+    print(
+        "\n2. Conjunto de todos los registros que sus elementos sean la tupla "
+        "'Name' y 'Global_Sales' de los juegos")
+    pprint(set(list(second_set_comp(f))[:5]))
+
+    print(
+        "\n3. Conjunto de todos los registros que sus elementos sean la tupla "
+        "'Name' y 'NA_Sales' de los juegos que hayan vendido más de 5.0 "
+        "millones en NA")
+    pprint(set(list(third_set_comp(f))[:5]))
+
+    print(
+        "\n4. Conjunto de tuplas con las columnas: 'Name' y 'Global_Sales' de juegos "
+        "que su 'Publisher' sea Sega, su 'Platform' 3DS y que sean de Sonic")
+    pprint(set(list(fourth_set_comp(f))[:5]))
+
+    print(
+        "\n5. Conjunto de los nombres de los 'Publisher' que poseen juegos del "
+        "genero 'Platform' cuyo lanzamiento está entre los años 2013 y "
+        "2016")
+    pprint(set(list(five_set_comp(f))[:5]))
 
     #Operaciones con conjuntos
 
-    # Obtener el conjuntos de las tuplas donde los juegos sean de la Plataforma 3DS, su Publisher sea Sega
+    print("\n\n--------------- Operaciones con conjuntos:\n")
+
+    # 1. Obtener el conjuntos de las tuplas donde los juegos su 'Platform' sea 3DS, su 'Publisher' sea Sega
     # y que su nombre no contenga la palabra Sonic.
     A = conjunto_p(f) - fourth_set_comp(f)
-    #pprint(A)
+    print((
+        "\n1. Conjunto de las tuplas donde los juegos 'Platform' sea 3DS,"
+        " su 'Publisher' sea Sega y que su nombre no contenga la palabra Sonic"))
+    pprint(set(list(A)[:5]))
 
-    # Obtener el conjunto de los Publisher's que poseen juegos del genero de Platform cuyo
-    # lanzamiento esta entre los años 2013 y 2016 y los las plataformas.
-
+    # 2. Obtener el conjunto de los 'Publisher' que poseen juegos del genero 'Platform' cuyo
+    # lanzamiento esta entre los años 2013 y 2016 y los nombres de las plataformas.
     B = five_set_comp(f).union(first_set_comp(f))
-    #print(B)
+    print((
+        "\n2. Conjunto de los 'Publisher' que poseen juegos del genero 'Platform' "
+        "cuyo lanzamiento esta entre los años 2013 y 2016 y los nombres de las plataformas"
+    ))
+    pprint(set(list(B)[:5]))
 
-    # Obtener el conjunto de tuplas que pertenezcan tanto en el conjunto A y el resultado de la llamada
+    # 3. Obtener el conjunto de tuplas que pertenezcan tanto al conjunto A y el resultado de la llamada
     # a la función second_set_comp(f)
     C = A.intersection(second_set_comp(f))
-    #print(C)
+    print(
+        ("\n3. Conjunto de tuplas que pertenezcan tanto al conjunto A y el "
+         "resultado de la llamada a la función second_set_comp(f)"))
+    pprint(set(list(C)[:5]))
 
-    # Obtener el conjunto complemento de las plataformas que pertenecen a las llamadas de las funciones
+    # 4. Obtener el conjunto complemento de las plataformas que pertenecen a las llamadas de las funciones
     # first_set_comp(f) y conjunto_q(f)
     D = conjunto_q(f).symmetric_difference(first_set_comp(f))
-    #print(D)
+    print(("\n4. Conjunto complemento de las plataformas que pertenecen a las "
+           "llamadas de las funciones first_set_comp(f) y conjunto_q(f)"))
+    pprint(set(list(D)[:5]))
 
-    # Obtener el conjunto de tuplas donde las ventas de los juegos que se encuentren en el conjunto
+    # 5. Obtener el conjunto de tuplas donde las ventas de los juegos que se encuentren en el conjunto
     # de la llamada a la función third_set_comp(f) y en el conjunto de la llamda a la función
     # conjunto_u(f)
-
     E = third_set_comp(f) & conjunto_u(f)
-    #print(E)
+    print((
+        "\n5. Conjunto de tuplas donde las ventas de los juegos que se "
+        "encuentren en el conjunto de la llamada a la función third_set_comp(f) "
+        "y en el conjunto de la llamda a la función conjunto_u(f)"))
+    pprint(set(list(E)[:5]))
 
 
 if __name__ == "__main__":

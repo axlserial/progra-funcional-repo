@@ -1,76 +1,107 @@
 import csv
 from pprint import pprint
+from statistics import mean
 
 
-# Lista de diccionarios con el nombre y la plataforma de los juegos
-def first_comp(name_file: str):
-    selected_keys = ["Name", "Platform"]
-
+# Diccionario con el 'Name' del juego como clave y la 'Platform'
+# del juego como valor.
+def first_dict_comp(name_file: str):
     with open(name_file) as csvfile:
-        dict_games = []
-
         games = csv.reader(csvfile, delimiter=',')
         h = next(games)
 
-        for game in games:
-            iterator = zip(h, game)
-            dict_games.append(
-                {k: v
-                 for k, v in iterator if k in selected_keys})
+        dict_games = {
+            game[h.index("Name")]: game[h.index("Platform")]
+            for game in games
+        }
 
         return dict_games
 
 
-# lista de diccionarios con el nombre y la plataforma de los juegos que sean del año 2009
-def second_comp(name_file: str):
-    selected_keys = ["Name", "Platform", "Year"]
-
+# Diccionario con el 'Name' del juego como clave y la 'Platform'
+# del juego como valor que sean del año 2009.
+def second_dict_comp(name_file: str):
     with open(name_file) as csvfile:
         games = csv.reader(csvfile, delimiter=',')
         h = next(games)
 
-        dict_games = [{k: v
-                       for k, v in zip(h, game) if k in selected_keys}
-                      for game in games
-                      if game[h.index(selected_keys[2])] == "2009"]
+        dict_games = {
+            game[h.index("Name")]: game[h.index("Platform")]
+            for game in games if game[h.index("Year")] == "2009"
+        }
 
         return dict_games
 
-# Lista de diccionarios con todos los registros las columnas Name, Platform y Year donde Publisher es Sega
-def third_comp(name_file: str):
 
-    with open(name_file) as csvfile:
-        columnas = ['Name','Platform','Year']
-        games = csv.reader(csvfile, delimiter=',')
-        h = next(games)
-        
-        list_games =[{k : v for k,v in zip(h,game) if k in columnas} for game in games if game[h.index("Publisher")] == "Sega"]
-        
-    return list_games
-
-# Diccionario de diccionarios donde la llave será la plataforma de los juegos cuyo Rank sea menos a 20 y el valor será un diccionario con el nombre del juego y el año
-def fourth_comp(name_file: str):
-
+# Diccionario con todos los registros que su 'Publisher' sea Sega
+def third_dict_comp(name_file: str):
     with open(name_file) as csvfile:
         games = csv.reader(csvfile, delimiter=',')
         h = next(games)
-        
-        plataforms = [game[h.index("Platform")] for game in games if int(game[h.index("Rank")]) < 20]
-        plataforms = list(set(plataforms))
 
-        return plataforms
+        dict_games = {
+            game[h.index("Name")]: {
+                "Platform": game[h.index("Platform")],
+                "Year": game[h.index("Year")],
+                "Genre": game[h.index("Genre")],
+                "Publisher": game[h.index("Publisher")]
+            }
+            for game in games if game[h.index("Publisher")] == "Sega"
+        }
+
+        return dict_games
 
 
+# Diccionario que tiene el 'Name' del juego como clave
+# y sus datos como valor y que 'Rank' sea mayor a 10 y menor a 20
+def fourth_dict_comp(name_file: str):
+    with open(name_file) as csvfile:
+        games = csv.reader(csvfile, delimiter=',')
+        h = next(games)
+
+        dict_games = {
+            game[h.index("Name")]: {
+                "Rank": game[h.index("Rank")],
+                "Platform": game[h.index("Platform")],
+                "Year": game[h.index("Year")],
+                "Genre": game[h.index("Genre")],
+                "Publisher": game[h.index("Publisher")]
+            }
+            for game in games if int(game[h.index("Rank")]) > 10
+            and int(game[h.index("Rank")]) < 20
+        }
+
+        return dict_games
+
+
+# Diccioanrio con el 'Name' del juego como clave 
+# y un promedio de sus Sales como valor
+def fifth_dict_comp(name_file: str):
+    with open(name_file) as csvfile:
+        games = csv.reader(csvfile, delimiter=',')
+        h = next(games)
+
+        dict_games = {
+            game[h.index("Name")]: mean(
+                [float(game[h.index("NA_Sales")]),
+                 float(game[h.index("EU_Sales")]),
+                 float(game[h.index("JP_Sales")]),
+                 float(game[h.index("Other_Sales")])])
+            for game in games
+        }
+
+        return dict_games
 
 def run():
     f = './vgsales.csv'
 
-    # pprint(first_comp(f)[:10])
-    #pprint(second_comp(f)[:10])
+    # pprint(first_comp(f))
+    # pprint(second_dict_comp(f))
+    # pprint(third_dict_comp(f))
+    # pprint(fourth_dict_comp(f))
+    pprint(fifth_dict_comp(f))
     #pprint(third_comp(f)[:10])
-    print(fourth_comp(f))
-
-    
+    # print(fourth_comp(f))
 
 
 if __name__ == "__main__":

@@ -144,9 +144,6 @@ def run():
     E = third_set_comp(f) & conjunto_u(f)
     #print(E)
 
-    
-    
-    
 
 if __name__ == "__main__":
     run()

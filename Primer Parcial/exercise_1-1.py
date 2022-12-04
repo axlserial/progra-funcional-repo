@@ -12,22 +12,17 @@ def run():
         ("Roberto", [7.5, 7.2, 71.1], 16, "H"),
     )
 
-    solution = []
-
     # Todos los estudiantes con una edad mayor o igual a 18
     l1 = [s for s in students if s[2] >= 18]
-    solution.append(l1)
+    print("Estudiantes con edad mayor o igual a 18.\n", l1)
 
     # Todos las estudiantes con una edad menor a 18 y sexo 'M'
     l2 = [s for s in students if s[2] < 18 and s[3] == "M"]
-    solution.append(l2)
+    print("\nEstudiantes con edad menor a 18 y sexo 'M'.\n", l2)
 
     # Todos los estudiantes con un promedio mayor o igual a 6.0
     l3 = [s for s in students if mean(s[1]) >= 6]
-    solution.append(l3)
-
-    for s in solution:
-        print(s, "\n")
+    print("\nEstudiantes con promedio mayor o igual a 6.0.\n", l3)
 
 
 if __name__ == "__main__":

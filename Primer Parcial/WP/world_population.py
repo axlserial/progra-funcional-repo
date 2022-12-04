@@ -1,6 +1,6 @@
 from statistics import mean
+from pprint import pprint
 import csv
-import json
 
 
 def part_one(name_file: str):
@@ -17,7 +17,7 @@ def part_one(name_file: str):
         return list_registers
 
 
-def part_two(name_file: list):
+def part_two(name_file: str):
     population_keys = [
         '2022 Population', '2020 Population', '2015 Population',
         '2010 Population', '2000 Population', '1990 Population',
@@ -46,7 +46,7 @@ def part_two(name_file: list):
         return list_registers
 
 
-def part_three(name_file: list):
+def part_three(name_file: str):
     selected_keys = ["Country/Territory", "2022 Population"]
 
     with open(name_file) as csvfile:
@@ -64,7 +64,7 @@ def part_three(name_file: list):
         return list_registers
 
 
-def part_four(name_file: list):
+def part_four(name_file: str):
     selected_keys = ["CCA3", "World Population Percentage"]
 
     with open(name_file) as csvfile:
@@ -79,7 +79,7 @@ def part_four(name_file: list):
         return list_registers
 
 
-def part_five(name_file: list):
+def part_five(name_file: str):
     population_keys = [
         '2022 Population', '2020 Population', '2015 Population',
         '2010 Population', '2000 Population', '1990 Population',
@@ -99,7 +99,7 @@ def part_five(name_file: list):
         return list_registers
 
 
-def part_six(name_file: list):
+def part_six(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -113,7 +113,7 @@ def part_six(name_file: list):
         return set_registers
 
 
-def part_seven(name_file: list):
+def part_seven(name_file: str):
     with open(name_file) as csvfile:
         registers = csv.reader(csvfile, delimiter=',')
         h = next(registers)
@@ -126,7 +126,7 @@ def part_seven(name_file: list):
         return set_registers
 
 
-def part_eight(name_file: list):
+def part_eight(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -143,7 +143,7 @@ def part_eight(name_file: list):
         return set_registers
 
 
-def part_nine(name_file: list):
+def part_nine(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -160,7 +160,7 @@ def part_nine(name_file: list):
         return set_registers
 
 
-def part_ten(name_file: list):
+def part_ten(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -175,7 +175,7 @@ def part_ten(name_file: list):
         return set_registers
 
 
-def part_eleven(name_file: list):
+def part_eleven(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -190,7 +190,7 @@ def part_eleven(name_file: list):
         return set_registers
 
 
-def part_twelve(name_file: list):
+def part_twelve(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -205,7 +205,7 @@ def part_twelve(name_file: list):
         return set_registers
 
 
-def part_thirteen(name_file: list):
+def part_thirteen(name_file: str):
     selected_keys = ["Country/Territory", "Continent"]
 
     with open(name_file) as csvfile:
@@ -220,7 +220,7 @@ def part_thirteen(name_file: list):
         return set_registers
 
 
-def part_fourteen(name_file: list):
+def part_fourteen(name_file: str):
     p11 = part_eleven(name_file)
     p12 = part_twelve(name_file)
     p13 = part_thirteen(name_file)
@@ -228,14 +228,14 @@ def part_fourteen(name_file: list):
     return p11.union(p12, p13)
 
 
-def part_fifteen(name_file: list):
+def part_fifteen(name_file: str):
     p8 = part_eight(name_file)
     p9 = part_nine(name_file)
 
     return p8.union(p9)
 
 
-def part_sixteen(name_file: list):
+def part_sixteen(name_file: str):
     selected_keys = ["Country/Territory", "World Population Percentage"]
 
     with open(name_file) as csvfile:
@@ -250,7 +250,7 @@ def part_sixteen(name_file: list):
         return list_registers
 
 
-def part_seventeen(name_file: list):
+def part_seventeen(name_file: str):
     selected_keys = ["Country/Territory", "World Population Percentage"]
 
     with open(name_file) as csvfile:
@@ -265,21 +265,21 @@ def part_seventeen(name_file: list):
         return list_registers
 
 
-def part_eighteen(name_file: list):
+def part_eighteen(name_file: str):
     p16 = part_sixteen(name_file)
     p17 = part_seventeen(name_file)
 
     return p16.intersection(p17)
 
 
-def part_nineteen(name_file: list):
+def part_nineteen(name_file: str):
     p16 = part_sixteen(name_file)
     p17 = part_seventeen(name_file)
 
     return p16.difference(p17)
 
 
-def part_twenty(name_file: list):
+def part_twenty(name_file: str):
     p16 = part_sixteen(name_file)
     p17 = part_seventeen(name_file)
 
@@ -289,26 +289,64 @@ def part_twenty(name_file: list):
 if __name__ == "__main__":
     archive = './world_population.csv'
 
-    # p1 = part_one(archive)
-    # p2 = part_two(archive)
-    # p3 = part_three(archive)
-    # p4 = part_four(archive)
-    # p5 = part_five(archive)
-    # p6 = part_six(archive)
-    # p7 = part_seven(archive)
-    # p8 = part_eight(archive)
-    # p9 = part_nine(archive)
-    # p10 = part_ten(archive)
-    # p11 = part_eleven(archive)
-    # p12 = part_twelve(archive)
-    # p13 = part_thirteen(archive)
-    # p14 = part_fourteen(archive)
-    # p15 = part_fifteen(archive)
-    # p16 = part_sixteen(archive)
-    # p17 = part_seventeen(archive)
-    # p18 = part_eighteen(archive)
-    # p19 = part_nineteen(archive)
-    p20 = part_twenty(archive)
+    print("Impresión limitada a cierto número de elementos\n")
 
-    print(p20)
-    # print(json.dumps(p2[:10], indent=4))
+    print("Ejercicio 1.")
+    pprint(part_one(archive)[:1])
+
+    print("\nEjercicio 2.")
+    pprint(part_two(archive)[:1])
+
+    print("\nEjercicio 3.")
+    pprint(part_three(archive)[:10])
+
+    print("\nEjercicio 4.")
+    part_four(archive)
+
+    print("\nEjercicio 5.")
+    pprint(part_five(archive)[:10])
+
+    print("\nEjercicio 6.")
+    pprint(set(list(part_six(archive))[:10]))
+
+    print("\nEjercicio 7.")
+    part_seven(archive)
+
+    print("\nEjercicio 8.")
+    pprint(set(list(part_eight(archive))[:10]))
+
+    print("\nEjercicio 9.")
+    pprint(set(list(part_nine(archive))[:10]))
+
+    print("\nEjercicio 10.")
+    pprint(set(list(part_ten(archive))[:10]))
+
+    print("\nEjercicio 11.")
+    pprint(set(list(part_eleven(archive))[:10]))
+
+    print("\nEjercicio 12.")
+    pprint(set(list(part_twelve(archive))[:10]))
+
+    print("\nEjercicio 13.")
+    pprint(set(list(part_thirteen(archive))[:10]))
+
+    print("\nEjercicio 14.")
+    pprint(set(list(part_fourteen(archive))[:10]))
+
+    print("\nEjercicio 15.")
+    pprint(set(list(part_fifteen(archive))[:10]))
+
+    print("\nEjercicio 16.")
+    pprint(set(list(part_sixteen(archive))[:10]))
+
+    print("\nEjercicio 17.")
+    pprint(set(list(part_seventeen(archive))[:10]))
+
+    print("\nEjercicio 18.")
+    part_eighteen(archive)
+
+    print("\nEjercicio 19.")
+    pprint(set(list(part_nineteen(archive))[:10]))
+
+    print("\nEjercicio 20.")
+    pprint(set(list(part_twenty(archive))[:10]))

@@ -12,8 +12,6 @@ def run():
         ("Roberto", [7.5, 7.2, 71.1], 16, "H"),
     )
 
-    solution = []
-
     # Todos los estudiantes
     d1 = {
         s[0]: {
@@ -23,7 +21,7 @@ def run():
         }
         for s in students
     }
-    solution.append(d1)
+    print("Todos los estudiantes.\n", d1)
 
     # Todos los estudiantes con una edad mayor o igual a 18
     d2 = {
@@ -34,7 +32,7 @@ def run():
         }
         for s in students if s[2] >= 18
     }
-    solution.append(d2)
+    print("\nEstudiantes con edad mayor o igual a 18.\n", d2)
 
     # Todos las estudiantes con una edad menor a 18 y sexo 'M'
     d3 = {
@@ -45,7 +43,7 @@ def run():
         }
         for s in students if s[2] < 18 and s[3] == "M"
     }
-    solution.append(d3)
+    print("\nEstudiantes con edad menor a 18 y sexo 'M'.\n", d3)
 
     # Todos los estudiantes con un promedio mayor o igual a 6.0
     d4 = {
@@ -56,10 +54,7 @@ def run():
         }
         for s in students if mean(s[1]) >= 6
     }
-    solution.append(d4)
-
-    for s in solution:
-        print(s, "\n")
+    print("\nEstudiantes con promedio mayor o igual a 6.0.\n", d4)
 
 
 if __name__ == "__main__":

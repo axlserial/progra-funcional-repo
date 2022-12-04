@@ -17,25 +17,36 @@ def run():
         ("León", [10.0, 6.0, 7.0], 17, "H"),
     )
 
-    # Todos los estudiantes, elemento: nombre
+    # El conjunto de todos los estudiantes, donde el elemento sea el nombre.
     s1 = {s[0] for s in students}
-    print("S1: ", s1, "\n")
+    print(
+        "El conjunto de todos los estudiantes, donde el elemento sea el nombre.\n",
+        s1)
 
-    # Edad >= 18, elemento: tupla(nombre, edad)
+    # El conjunto de todos los estudiantes con una edad mayor o igual a 18,
+    # donde el elemento sea una tupla (nombre, edad).
     s2 = {(s[0], s[2]) for s in students if s[2] >= 18}
-    print("S2: ", s2, "\n")
+    print(
+        "\nEl conjunto de todos los estudiantes con una edad mayor o igual a 18, "
+        "donde el elemento sea una tupla (nombre, edad).\n", s2)
 
-    # Edad < 18 y sexo 'M', elemento: tupla(nombre, sexo)
+    # El conjunto de todos las estudiantes con una edad menor a 18 y sexo ‘M’,
+    # donde el elemento sea una tupla (nombre, sexo).
     s3 = {(s[0], s[3]) for s in students if s[2] < 18 and s[3] == 'M'}
-    print("S3: ", s3, "\n")
+    print(
+        "\nEl conjunto de todos las estudiantes con una edad menor a 18 y sexo "
+        "‘M’, donde el elemento sea una tupla (nombre, sexo).\n", s3)
 
-    # Promedio >= 6, elemento: nombre
+    # El conjunto de todos los estudiantes con un promedio mayor o igual a 6.0,
+    # donde el elemento sea el nombre.
     s4 = {s[0] for s in students if mean(s[1]) >= 6.0}
-    print("S4: ", s4, "\n")
+    print(
+        "\nEl conjunto de todos los estudiantes con un promedio mayor o igual a "
+        "6.0, donde el elemento sea el nombre.\n", s4)
 
     # alumnos reprobados
     not_aproved_students = s1.difference(s4)
-    print("Not aproved students: ", not_aproved_students)
+    print("\nNot aproved students: ", not_aproved_students)
 
 
 if __name__ == "__main__":
